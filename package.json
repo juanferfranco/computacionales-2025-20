@@ -10,9 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.34.0",
+    "@astrojs/starlight": "^0.34.3",
     "@babel/runtime": "^7.26.10",
-    "astro": "^5.7.3",
+    "astro": "^5.8.0",
     "esbuild": ">=0.25.0",
     "p5": "^1.11.2",
     "rehype-mathjax": "^6.0.0",

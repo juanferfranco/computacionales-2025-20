@@ -1,10 +1,13 @@
 ---
 title: Unidad 1
 unitId: unit1
+fullWidth: true
 ---
 
 import ActivityPlaceholder from '../../../components/ActivityPlaceholder.astro';
 import unidades from '../../activities/unidades.json';
+import TutorialViewer from '../../../components/TutorialViewer.astro';
+
 
 export const unit = unidades.find(u => u.nombre === frontmatter.title);
 
@@ -54,6 +57,133 @@ Ahora vas a indar en el funcionamiento de la CPU Hack y su lenguaje ensamblador.
     />
   ))
 }
+
+Este es un tutorial interactivo donde exploraremos las transformaciones básicas en el contexto de p5.js. Sigue los pasos y observa cómo el código cambia a medida que avanzas.
+
+<TutorialViewer>
+  <div data-slide-index="0">
+    <div data-slide-type="text">
+      ### Introducción a `translate()`
+
+      En esta primera diapositiva, vamos a ver cómo la función `translate()` nos permite mover el origen del sistema de coordenadas. En p5.js, el punto `(0,0)` está por defecto en la esquina superior izquierda del lienzo. `translate(x, y)` mueve este origen a la nueva posición `(x, y)`.
+
+      Así, si dibujamos un rectángulo en `(0,0)` después de un `translate()`, este aparecerá en la nueva posición del origen.
+    </div>
+    <div data-slide-type="code">
+      ```js
+      // Slide 1: Entendiendo translate()
+      function setup() {
+        createCanvas(400, 400); // Crea un lienzo de 400x400
+      }
+
+      function draw() {
+        background(220); // Fondo gris claro
+
+        // Dibuja un rectángulo en (50, 50) sin translate
+        // stroke(0); // Borde negro
+        // fill(255, 0, 0); // Relleno rojo
+        // rect(50, 50, 80, 80);
+
+        // Mueve el origen 100 píxeles a la derecha y 100 hacia abajo
+        translate(100, 100);
+
+        // Ahora, un rectángulo en (0,0) se dibujará en la nueva posición del origen
+        stroke(0);
+        fill(0, 0, 255); // Relleno azul
+        rect(0, 0, 80, 80); // Se dibujará en (100, 100) en el lienzo original
+      }
+      ```
+    </div>
+  </div>
+
+  <div data-slide-index="1">
+    <div data-slide-type="text">
+      ### Uso de `rotate()`
+
+      Ahora vamos a añadir `rotate()` para girar el sistema de coordenadas. `rotate()` toma un ángulo en radianes. Es importante recordar que las rotaciones se aplican **alrededor del origen actual**. Por eso, es común usar `translate()` primero para mover el origen al punto de rotación deseado (por ejemplo, el centro de un objeto o el centro del lienzo).
+
+      Observa cómo el rectángulo gira alrededor del punto `(width/2, height/2)` después de que hemos trasladado el origen allí. `frameCount` nos da una animación suave.
+    </div>
+    <div data-slide-type="code">
+      ```js
+      // Slide 2: Entendiendo rotate()
+      function setup() {
+        createCanvas(400, 400);
+        angleMode(RADIANS); // Asegura que los ángulos son en radianes (por defecto en p5.js)
+      }
+
+      function draw() {
+        background(220);
+
+        // Mueve el origen al centro del lienzo
+        translate(width / 2, height / 2);
+
+        // Guarda el estado actual de la transformación (para futuras transformaciones apiladas)
+        // push();
+
+        // Rota el sistema de coordenadas. frameCount * 0.01 proporciona una rotación continua.
+        rotate(frameCount * 0.01);
+
+        // Dibuja un rectángulo centrado en el nuevo origen (ahora en el centro del lienzo)
+        stroke(0);
+        fill(0, 255, 0); // Relleno verde
+        rectMode(CENTER); // Dibuja el rectángulo desde su centro
+        rect(0, 0, 100, 50);
+
+        // Restaura el estado de transformación guardado
+        // pop();
+      }
+      ```
+    </div>
+  </div>
+
+  <div data-slide-index="2">
+    <div data-slide-type="text">
+      ### Combinando `translate()`, `rotate()` y `scale()`
+
+      Finalmente, introducimos `scale()` para cambiar el tamaño del sistema de coordenadas. `scale(factor)` aplica un factor de escala uniforme. `scale(factorX, factorY)` permite escalas no uniformes. Al igual que `rotate()`, `scale()` también se aplica desde el origen actual.
+
+      Observa cómo el rectángulo se mueve, rota y cambia de tamaño. El orden de las transformaciones es crucial: `translate()`, luego `rotate()`, luego `scale()`, ya que cada una afecta el marco de referencia para la siguiente.
+    </div>
+    <div data-slide-type="code">
+      ```js
+      // Slide 3: Combinando translate(), rotate() y scale()
+      function setup() {
+        createCanvas(400, 400);
+        angleMode(RADIANS);
+      }
+
+      function draw() {
+        background(220);
+
+        // 1. Mueve el origen al centro del lienzo
+        translate(width / 2, height / 2);
+
+        // 2. Rota el sistema de coordenadas
+        rotate(frameCount * 0.02);
+
+        // 3. Escala el sistema de coordenadas
+        // scale(sin(frameCount * 0.05) * 0.5 + 1); // Escala pulsante
+        scale(1.2); // Escala fija
+
+        // Dibuja un rectángulo
+        stroke(0);
+        fill(255, 165, 0); // Relleno naranja
+        rectMode(CENTER);
+        rect(0, 0, 100, 50);
+
+        // Opcional: Para entender mejor, puedes dibujar otro objeto
+        // fuera del contexto de la transformación actual
+        // push(); // Guarda el estado de la transformación actual
+        // resetMatrix(); // Restablece las transformaciones a la identidad (0,0 en top-left)
+        // fill(100);
+        // ellipse(50, 50, 30, 30);
+        // pop(); // Restaura la transformación anterior
+      }
+      ```
+    </div>
+  </div>
+</TutorialViewer>
 
 ## Aplicación
 

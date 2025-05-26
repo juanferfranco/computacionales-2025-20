@@ -1,0 +1,180 @@
+---
+// src/components/TutorialViewer.astro
+// Este componente se ejecutará en el cliente para gestionar la interactividad.
+// Por eso usamos 'client:load'.
+
+// Importante: No necesitamos importar ninguna lógica de JS aquí en el script de Astro
+// porque la interactividad la manejaremos directamente con JavaScript en el navegador.
+
+// En Astro, cuando usas <slot />, el contenido del slot ya ha sido procesado por MDX
+// y está listo para ser renderizado como HTML.
+// Lo que haremos es renderizar todos los contenidos de las diapositivas
+// pero mantenerlos ocultos, y luego un script en el cliente
+// copiará el contenido de la diapositiva actual a los paneles visibles.
+---
+
+<div class="tutorial-viewer-container" client:load>
+  <div class="tutorial-left-panel">
+    <div id="tutorial-text-content" class="tutorial-content-display">
+      <!-- El contenido de texto de la diapositiva actual se insertará aquí con JS -->
+    </div>
+    <div class="tutorial-navigation">
+      <button id="tutorial-prev-button" disabled>← Anterior</button>
+      <span id="tutorial-page-indicator">1/1</span>
+      <button id="tutorial-next-button" disabled>Siguiente →</button>
+    </div>
+  </div>
+
+  <div class="tutorial-right-panel">
+    <div id="tutorial-code-content" class="tutorial-content-display">
+      <!-- El contenido de código de la diapositiva actual se insertará aquí con JS -->
+    </div>
+  </div>
+
+  <!-- Contenedor oculto para todas las diapositivas.
+       El JavaScript del cliente accederá a estos elementos. -->
+  <div id="all-slides-container" style="display: none;">
+    <slot />
+  </div>
+</div>
+
+<script>
+  // Script que se ejecutará en el cliente (debido a client:load en el div padre)
+  document.addEventListener('DOMContentLoaded', () => {
+    const tutorialViewer = document.querySelector('.tutorial-viewer-container');
+    if (!tutorialViewer) return;
+
+    const textContentDisplay = tutorialViewer.querySelector('#tutorial-text-content');
+    const codeContentDisplay = tutorialViewer.querySelector('#tutorial-code-content');
+    const pageIndicator = tutorialViewer.querySelector('#tutorial-page-indicator');
+    const prevButton = tutorialViewer.querySelector('#tutorial-prev-button');
+    const nextButton = tutorialViewer.querySelector('#tutorial-next-button');
+    const allSlidesContainer = tutorialViewer.querySelector('#all-slides-container');
+
+    // Obtener todas las diapositivas. Asumimos que cada hijo directo del slot es una diapositiva.
+    // Usaremos un atributo `data-slide-index` para identificarlas.
+    const allSlides = Array.from(allSlidesContainer.children).filter(child =>
+      child.hasAttribute('data-slide-index')
+    );
+    const totalSlides = allSlides.length;
+
+    let currentSlideIndex = 0;
+
+    // Función para actualizar el contenido visible
+    function updateSlideContent() {
+      if (allSlides[currentSlideIndex]) {
+        const currentSlideElement = allSlides[currentSlideIndex];
+        const textElement = currentSlideElement.querySelector('[data-slide-type="text"]');
+        const codeElement = currentSlideElement.querySelector('[data-slide-type="code"]');
+
+        textContentDisplay.innerHTML = textElement ? textElement.innerHTML : '';
+        codeContentDisplay.innerHTML = codeElement ? codeElement.innerHTML : '';
+
+        pageIndicator.textContent = `${currentSlideIndex + 1}/${totalSlides}`;
+        prevButton.disabled = currentSlideIndex === 0;
+        nextButton.disabled = currentSlideIndex === totalSlides - 1;
+      }
+    }
+
+    // Event Listeners para los botones de navegación
+    prevButton.addEventListener('click', () => {
+      if (currentSlideIndex > 0) {
+        currentSlideIndex--;
+        updateSlideContent();
+      }
+    });
+
+    nextButton.addEventListener('click', () => {
+      if (currentSlideIndex < totalSlides - 1) {
+        currentSlideIndex++;
+        updateSlideContent();
+      }
+    });
+
+    // Cargar la primera diapositiva al inicio
+    updateSlideContent();
+  });
+</script>
+
+<style>
+  /* Estilos para el contenedor de la actividad */
+  .tutorial-viewer-container {
+    display: flex;
+    gap: 1.5rem; /* Espacio entre los paneles */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--starlight-border-color); /* Usamos variables de Starlight si existen */
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: var(--starlight-background-color); /* Color de fondo de Starlight */
+    min-height: 500px; /* Altura mínima para que se vea bien */
+  }
+
+  /* Paneles izquierdo y derecho */
+  .tutorial-left-panel,
+  .tutorial-right-panel {
+    flex: 1; /* Para que ocupen el mismo ancho */
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Texto arriba, navegación abajo */
+  }
+
+  .tutorial-left-panel {
+    border-right: 1px solid var(--starlight-border-color);
+  }
+
+  /* Contenido dentro de los paneles (texto y código) */
+  .tutorial-content-display {
+    flex-grow: 1; /* Para que ocupe todo el espacio disponible */
+    overflow-y: auto; /* Si el contenido es muy largo */
+    padding-bottom: 1rem; /* Espacio antes de la navegación */
+  }
+
+  /* Navegación */
+  .tutorial-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--starlight-border-color);
+  }
+
+  .tutorial-navigation button {
+    background-color: var(--starlight-button-background); /* Usar colores de Starlight */
+    color: var(--starlight-button-color);
+    border: 1px solid var(--starlight-button-border);
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .tutorial-navigation button:hover:not(:disabled) {
+    background-color: var(--starlight-button-hover-background);
+  }
+
+  .tutorial-navigation button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .tutorial-page-indicator {
+    font-weight: bold;
+    color: var(--starlight-text-color);
+  }
+
+  /* Media queries para pantallas más pequeñas */
+  @media (max-width: 768px) {
+    .tutorial-viewer-container {
+      flex-direction: column; /* Apilar los paneles en móviles */
+      gap: 0;
+    }
+
+    .tutorial-left-panel {
+      border-right: none;
+      border-bottom: 1px solid var(--starlight-border-color); /* Separador horizontal */
+    }
+  }
+</style>

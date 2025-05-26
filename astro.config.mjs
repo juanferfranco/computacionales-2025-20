@@ -18,6 +18,9 @@ export default defineConfig({
 			  root: { label: 'Español', lang: 'es-ES' },
 			  // en: { label: 'English', lang: 'en-US' },
 			},
+			customCss: [
+    		'./src/styles/custom.css', // Asegúrate de que esta ruta sea correcta desde la raíz del proyecto
+  			],
 			sidebar: [
 				{
 					label: 'Introducción',
