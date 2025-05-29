@@ -1,4 +1,4 @@
-#### Ciclo feetch-decode-execute
+### Ciclo feetch-decode-execute
 
 El siguiente programa está escrito en el lenguaje ensamblador del computador 
 Hack. Este computador no es un computador comercial, sino un computador didáctico 

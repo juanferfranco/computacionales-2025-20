@@ -4,7 +4,7 @@ import { s } from '@astrojs/starlight/expressive-code/hast';
 
 // Destructure props with default values
 const { id = '', unit = ''} = Astro.props;
-let activityContent, solutionContent, feedbackContent,studentContent;
+let activityContent, feedbackContent,studentContent;
 let hasError = false;
 let notStarted = false;
 
@@ -18,7 +18,6 @@ try {
   }
 
   studentContent = await import(`../content/activities/${unit}/${id}/student.md`);
-  solutionContent = await import(`../content/activities/${unit}/${id}/solution.md`);
   feedbackContent = await import(`../content/activities/${unit}/${id}/feedback.md`);
 
   const rawContent = await studentContent.rawContent?.() || '';
@@ -39,14 +38,12 @@ try {
 
 {hasError ? (
   <div class="activity-error">
-    <h3>{id.replace('activity','Actividad ')}</h3>
     <p>⚠️ Esta actividad aún no está definida</p>
     <p class="error-details">Archivos faltantes en: <code>content/activities/{unit}/{id}/</code></p>
   </div>
 ) : notStarted ? (
 
 <section class="activity">
-  <h3>{id.replace('activity','Actividad ')}</h3>
   <div>
     {activityContent && (<activityContent.Content />)}
   </div>
@@ -57,7 +54,6 @@ try {
   </section>
 ) : (
 <section class="activity">
-  <h3>{id.replace('activity','Actividad ')}</h3>
   <div>
     {activityContent && (<activityContent.Content />)}
   </div>
@@ -71,15 +67,8 @@ try {
           </div>
         </TabItem>
       )}
-      {solutionContent && (
-        <TabItem label="Solución" icon="open-book">
-          <div class="markdown-content">
-            <solutionContent.Content />
-          </div>
-        </TabItem>
-      )}
       {feedbackContent && (
-        <TabItem label="Retroalimentación" icon="comment">
+        <TabItem label="Ayuda" icon="comment">
           <div class="markdown-content">
             <feedbackContent.Content />
           </div>
