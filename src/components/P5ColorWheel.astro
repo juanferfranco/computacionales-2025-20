@@ -1,18 +1,18 @@
 ---
 ---
-<div class="p5-container2"></div>
+<div class="p5-container2" id="p5-color-wheel-container"></div> {/* Added id */}
 
 <script>
 function waitForP5(callback) {
   if (window.p5) {
-    console.log("p5.js ya está disponible.");
+    // console.log("p5.js ya está disponible."); // Kept for brevity, can be re-enabled
     callback();
   } else {
-    console.log("Esperando p5.js...");
+    // console.log("Esperando p5.js...");
     const checkP5 = setInterval(() => {
       if (window.p5) {
         clearInterval(checkP5);
-        console.log("p5.js finalmente disponible.");
+        // console.log("p5.js finalmente disponible.");
         callback();
       }
     }, 100);
@@ -20,50 +20,58 @@ function waitForP5(callback) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const sketchContainer = document.getElementById("p5-color-wheel-container"); // Use the ID
+
+  if (!sketchContainer) {
+    console.error("P5ColorWheel: Container #p5-color-wheel-container not found!");
+    return;
+  }
+
   waitForP5(() => {
-    console.log("Ejecutando la simulación del sistema HSB...");
+    // console.log("Ejecutando la simulación del sistema HSB...");
     new p5((p) => {
 
       let hueSlider, satSlider, brightSlider;
       let hsbColor, rgbColor;
       let colorWheelGraphic;
-      let wheelRadius = 150; // Radio de la rueda de color
-      let wheelX = 230, wheelY = 390; // Posición deseada de la color wheel en el canvas
+      let wheelRadius = 150;
+      let wheelX = 230, wheelY = 390;
 
       p.setup = function () {
+        // The canvas will be parented to sketchContainer by p5.js
+        // because sketchContainer is passed as the second argument to new p5() below.
         let canvas = p.createCanvas(480, 550);
-        canvas.parent(document.querySelector(".p5-container2"));
+        // canvas.parent(sketchContainer); // This is now implicitly handled for the canvas
+
         p.colorMode(p.HSB, 255);
 
-        // Posicionar los sliders al lado derecho del canvas
-        let sliderX = p.width + 20;
+        let sliderX = p.width + 20; // p.width refers to canvas width (480px)
 
-        // Crear y reparentear los párrafos
+        // Create and parent the paragraph and slider elements to sketchContainer
         let tonoP = p.createP("Tono (H)");
-        tonoP.parent(document.querySelector(".p5-container2"));
+        tonoP.parent(sketchContainer); // Explicitly parent to our specific container
         tonoP.position(sliderX, 20);
 
         hueSlider = p.createSlider(0, 255, 0);
-        hueSlider.parent(document.querySelector(".p5-container2"));
+        hueSlider.parent(sketchContainer);
         hueSlider.position(sliderX, 50);
 
         let satP = p.createP("Saturación (S)");
-        satP.parent(document.querySelector(".p5-container2"));
+        satP.parent(sketchContainer);
         satP.position(sliderX, 80);
 
         satSlider = p.createSlider(0, 255, 255);
-        satSlider.parent(document.querySelector(".p5-container2"));
+        satSlider.parent(sketchContainer);
         satSlider.position(sliderX, 110);
 
         let brilloP = p.createP("Brillo (B)");
-        brilloP.parent(document.querySelector(".p5-container2"));
+        brilloP.parent(sketchContainer);
         brilloP.position(sliderX, 140);
 
         brightSlider = p.createSlider(0, 255, 255);
-        brightSlider.parent(document.querySelector(".p5-container2"));
+        brightSlider.parent(sketchContainer);
         brightSlider.position(sliderX, 170);
 
-        // Pre-dibuja la color wheel en un gráfico fuera de pantalla con 90° de rotación CCW
         colorWheelGraphic = createColorWheelGraphic(wheelRadius);
 
         tonoP.style('margin', '0');
@@ -71,8 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         brilloP.style('margin', '0');
       };
 
-
-
+      // ...existing code...
       p.draw = function () {
         p.background(30);
         p.noStroke();
@@ -154,20 +161,17 @@ document.addEventListener("DOMContentLoaded", () => {
         if (b < 130) return "Brillo medio";
         return "Brillo alto";
       }
-
-
-
-
-
-    });
+      // ...existing code...
+    }, sketchContainer); // Pass the container element to the p5 constructor
   });
 });
 </script>
 
 <style>
-  .p5-container2 {
+  /* You can use the ID for styling as well, or keep the class */
+  #p5-color-wheel-container { /* Changed from .p5-container2 to match ID */
     position: relative;
-    width: 650px;
+    width: 650px; /* Ensure this width accommodates canvas (480px) + sliders area */
     height: 550px;
     margin: 2rem auto;
     border: 1px solid #ccc;

@@ -1,6 +1,6 @@
 ---
 ---
-<div class="p5-container"></div>
+<div class="p5-container-P5Interpolarion"></div>
 
 <script>
 function waitForP5(callback) {
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       p.setup = function () {
         let canvas = p.createCanvas(600, 600);
-        canvas.parent(document.querySelector(".p5-container"));
+        canvas.parent(document.querySelector(".p5-container-P5Interpolarion"));
         currentPos = p.createVector(150, 300);
         target = p.createVector(450, 300);
       };
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <style>
-  .p5-container {
+  .p5-container-P5Interpolarion {
     width: 400px;
       height: 400px;
       margin: 2rem auto;
