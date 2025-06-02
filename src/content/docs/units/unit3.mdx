@@ -4,9 +4,6 @@ unitId: unit3
 ---
 
 import ActivityPlaceholder from '../../../components/ActivityPlaceholder.astro';
-import unidades from '../../activities/unidades.json';
-
-export const unit = unidades.find(u => u.nombre === frontmatter.title);
 
 ## Introducción
 
@@ -31,48 +28,89 @@ nuestro objetivo no es aprender C++, no es el fin, C++ será el medio
 a través del cual explorarás algunos conceptos básicos que ya has usado (C#), 
 pero que ahora analizarás más a fondo.
 
-{unit.actividades
-  .filter(act => act.fase === "set")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId} 
-    />
-  ))
-}
+
+### Actividad 01
+<ActivityPlaceholder 
+  id='activity01' 
+  unit={frontmatter.unitId}
+/>
+
+### Actividad 02
+<ActivityPlaceholder 
+  id='activity02' 
+  unit={frontmatter.unitId}
+/>
 
 ## Investigación
 
-{unit.actividades
-  .filter(act => act.fase === "seek")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId}
-    />
-  ))
-}
+### Actividad 03
+<ActivityPlaceholder 
+  id='activity03' 
+  unit={frontmatter.unitId}
+/>
+### Actividad 04
+<ActivityPlaceholder 
+  id='activity04' 
+  unit={frontmatter.unitId}
+/>
+### Actividad 05
+<ActivityPlaceholder 
+  id='activity05' 
+  unit={frontmatter.unitId}
+/>
+### Actividad 06
+<ActivityPlaceholder 
+  id='activity06' 
+  unit={frontmatter.unitId}
+/>
+### Actividad 07
+<ActivityPlaceholder 
+  id='activity07' 
+  unit={frontmatter.unitId}
+/>
+
+### Actividad 08
+<ActivityPlaceholder 
+  id='activity08' 
+  unit={frontmatter.unitId}
+/>
+
+### Actividad 09
+<ActivityPlaceholder 
+  id='activity09' 
+  unit={frontmatter.unitId}
+/>
+
+### Actividad 10
+<ActivityPlaceholder 
+  id='activity10' 
+  unit={frontmatter.unitId}
+/>
 
 ## Aplicación
 
-{unit.actividades
-  .filter(act => act.fase === "apply")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId} 
-    />
-  ))
-}
+### Actividad 11
+<ActivityPlaceholder 
+  id='activity11' 
+  unit={frontmatter.unitId}
+/>
+### Actividad 12
+<ActivityPlaceholder 
+  id='activity12' 
+  unit={frontmatter.unitId}
+/>
+
 
 ## Consolidación y metacognición
 
-{unit.actividades
-  .filter(act => act.fase === "reflect")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId} 
-    />
-  ))
-}
+### Actividad 13
+<ActivityPlaceholder 
+  id='activity13' 
+  unit={frontmatter.unitId}
+/>
+
+### Actividad 14
+<ActivityPlaceholder 
+  id='activity14' 
+  unit={frontmatter.unitId}
+/>
