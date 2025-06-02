@@ -4,10 +4,8 @@ import { s } from '@astrojs/starlight/expressive-code/hast';
 
 // Destructure props with default values
 const { id = '', unit = ''} = Astro.props;
-let activityContent, feedbackContent,studentContent;
+let activityContent
 let hasError = false;
-let notStarted = false;
-
 
 try {
   // Intentamos cargar primero como .mdx, luego como .md
@@ -16,23 +14,8 @@ try {
   } catch {
     activityContent = await import(`../content/activities/${unit}/${id}/activity.md`);
   }
-
-  
-  studentContent = await import(`../content/activities/${unit}/${id}/student.md`);
-  feedbackContent = await import(`../content/activities/${unit}/${id}/feedback.md`);
-
-  const rawContent = await studentContent.rawContent?.() || '';
-  //console.log("Raw content from file:", rawContent);
-
-  if (!rawContent || rawContent.trim() === '') {
-    notStarted = true;
-    //console.log("Activity not started - empty content");
-  } 
-
 } catch (error) {
-//  console.error(`Error importing activity files for unit ${unit}, id ${id}:`, error);
   console.error(`Error importing activity files for unit: ${unit}, id: ${id}:`);
-
   hasError = true;
 }
 ---
@@ -42,42 +25,11 @@ try {
     <p>⚠️ Esta actividad aún no está definida</p>
     <p class="error-details">Archivos faltantes en: <code>content/activities/{unit}/{id}/</code></p>
   </div>
-) : notStarted ? (
-
-<section class="activity">
-  <div>
-    {activityContent && (<activityContent.Content />)}
-  </div>
-  <div class="activity-not-started">
-    <p>📝 Actividad pendiente por iniciar</p>
-    <p class="status-details">El archivo student.md está vacío</p>
-  </div>
-  </section>
 ) : (
 <section class="activity">
   <div>
     {activityContent && (<activityContent.Content />)}
   </div>
-  <div class="activity-started">
-    <h4>🚀 Tu solución: </h4>
-    <Tabs>
-      {studentContent && (
-        <TabItem label="Estudiante" icon="document">
-          <div class="markdown-content">
-            <studentContent.Content />
-          </div>
-        </TabItem>
-      )}
-      {feedbackContent && (
-        <TabItem label="Ayuda" icon="comment">
-          <div class="markdown-content">
-            <feedbackContent.Content />
-          </div>
-        </TabItem>
-      )}
-    </Tabs>
-  </div>
-
 </section>
 )}
 
@@ -96,21 +48,5 @@ try {
     background: var(--sl-color-gray-1);
     padding: 0.2em 0.4em;
     border-radius: 0.25rem;
-  }
-  .activity-not-started {
-    padding: 1rem;
-    border: 2px dashed var(--sl-color-orange);
-    border-radius: 0.5rem;
-    margin: 1rem 0;
-  }
-  .status-details {
-    font-size: 0.9em;
-    color: var(--sl-color-gray-5);
-  }
-  .activity-started {
-    padding: 1rem;
-    border: 2px dashed var(--sl-color-green);
-    border-radius: 0.5rem;
-    margin: 1rem 0;
   }
 </style>
