@@ -6,6 +6,7 @@ import rehypeMathjax from 'rehype-mathjax';
 
 // https://astro.build/config
 export default defineConfig({
+	base: '/computacionales-2025-20',
 	markdown: {
 		remarkPlugins: [remarkMath],
 		rehypePlugins: [rehypeMathjax],
@@ -54,6 +55,5 @@ export default defineConfig({
 			],
 		}),
 	],
-	site: 'https://jfUPB.github.io',
-	base: 'computacionales-2025-20',
+	site: 'https://jfUPB.github.io'
 });
