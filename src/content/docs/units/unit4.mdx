@@ -4,9 +4,6 @@ unitId: unit4
 ---
 
 import ActivityPlaceholder from '../../../components/ActivityPlaceholder.astro';
-import unidades from '../../activities/unidades.json';
-
-export const unit = unidades.find(u => u.nombre === frontmatter.title);
 
 ## Introducción 📜
 
@@ -39,17 +36,11 @@ Además, analizarás un ejemplo de programación creativa que utiliza openFramew
 pero usando la implementación de la biblioteca estándar de C++. La idea es que te familiarices con 
 openFrameworks y con la programación creativa antes de implementar la lista enlazada desde cero.
 
-{unit.actividades
-  .filter(act => act.fase === "set")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId} 
-    />
-  ))
-}
-
-import InvestigacionContent from '../../activities/unit4/activity02/activity.mdx';
+### Actividad 1
+<ActivityPlaceholder 
+  id='activity01' 
+  unit={frontmatter.unitId}
+/>
 
 ## Investigación 🔎
 
@@ -58,25 +49,11 @@ aplicar a un problema de programación creativa; sin embargo, esta vez no usarem
 biblioteca estándar de C++. La idea es que entiendas cómo funciona una lista enlazada y cómo se puede
 aplicar a un problema concreto.
 
-{unit.actividades
-  .filter(act => act.fase === "seek")
-  .map(act => {
-    // Verifica si el archivo es .mdx o .md
-    const isMDX = act.nombre === "activity02";
-    return isMDX ? (
-      <ActivityPlaceholder 
-        id="activity02" 
-        unit={frontmatter.unitId}
-      />
-    ) : (
-      <ActivityPlaceholder 
-        id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-        unit={frontmatter.unitId}
-      />
-    );
-  })
-}
-
+### Actividad 2
+<ActivityPlaceholder 
+  id='activity02' 
+  unit={frontmatter.unitId}
+/>
 
 ## Aplicación 🛠 
 
@@ -84,27 +61,35 @@ En esta fase, vas a implementar una cola en C++ y aplicarla a un problema de pro
 En este punto lo que busco es que transfieras lo aprendido sobre listas enlazadas a una nueva estructura 
 de datos.
 
-{unit.actividades
-  .filter(act => act.fase === "apply")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId} 
-    />
-  ))
-}
+### Actividad 3
+
+<ActivityPlaceholder 
+  id='activity03' 
+  unit={frontmatter.unitId}
+/>
+
 
 ## Consolidación y metacognición 🤔
 
 En esta fase, vas a revisar y consolida lo aprendido en esta unidad, vas autoevaluar tu proceso 
 de aprendizaje y te pediré que ayudes a mejorar el diseño de la unidad para futuros estudiantes.
 
-{unit.actividades
-  .filter(act => act.fase === "reflect")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId} 
-    />
-  ))
-}
+### Actividad 4
+
+<ActivityPlaceholder 
+  id='activity04' 
+  unit={frontmatter.unitId}
+/>
+
+### Actividad 5
+
+<ActivityPlaceholder 
+  id='activity05' 
+  unit={frontmatter.unitId}
+/>
+
+### Actividad 6
+<ActivityPlaceholder 
+  id='activity06' 
+  unit={frontmatter.unitId}
+/>

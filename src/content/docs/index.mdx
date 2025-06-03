@@ -7,6 +7,10 @@ import { Steps } from '@astrojs/starlight/components';
 import { Badge } from '@astrojs/starlight/components';
 import { FileTree } from '@astrojs/starlight/components';
 import P5Simulation from '../../components/IntroSC.astro';
+import P5Sketch from '../../components/P5Sketch.astro';
 
-<P5Simulation />
-
+<P5Sketch 
+  sketchUrl="/src/sketches/introSC.js" 
+  containerId="introSC"
+  styleClass="p5-container-introSC"
+/>

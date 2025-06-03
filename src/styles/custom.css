@@ -36,3 +36,42 @@
 /*    max-width: 1200px !important;
 }
 */
+
+.p5-container-colorWheel {
+  display: flex;
+  justify-content: flex-start; /* Alinear a la izquierda para que los sliders quepan */
+  align-items: center;
+  margin: 1rem auto;
+  width: 700px;              /* Ancho fijo suficiente */
+  height: 580px;             /* Altura fija */
+  position: relative;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #1a1a1a; /* Fondo oscuro para que se vea mejor */
+  overflow: visible;          /* Permitir que los sliders sean visibles */
+}
+
+.p5-container-interpolation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto;
+  width: 600px;
+  height: 600px;
+  position: relative;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #1a1a1a;
+  overflow: visible;
+}
+
+.p5-container-introSC {
+      width: 800px;
+      height: 800px;
+      margin: 2rem auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+    }

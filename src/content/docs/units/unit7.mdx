@@ -4,9 +4,6 @@ unitId: unit7
 ---
 
 import ActivityPlaceholder from '../../../components/ActivityPlaceholder.astro';
-import unidades from '../../activities/unidades.json';
-
-export const unit = unidades.find(u => u.nombre === frontmatter.title);
 
 ## Introducción 📜
 
@@ -29,15 +26,12 @@ a través de la configuración de estado (VAOs).
 *   **Usar Uniforms:** pasarás datos dinámicos desde C++ a tus shaders.
 *   **Aplicar conocimientos:** reforzarás tu aprendizaje mediante la solución de un problema sencillo.
 
-{unit.actividades
-  .filter(act => act.fase === "set")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId} 
-    />
-  ))
-}
+### Actividad 1
+<ActivityPlaceholder 
+  id='activity01' 
+  unit={frontmatter.unitId}
+/>
+
 
 ## Investigación 🔎
 
@@ -46,15 +40,27 @@ Vas a investigar cómo funcionan los shaders y cómo se comunican con el código
 Vas a realizar una serie de actividades que te ayudarán a entender cómo funcionan los gráficos 
 acelerados por hardware y cómo puedes manipularlos.
 
-{unit.actividades
-  .filter(act => act.fase === "seek")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId}
-    />
-  ))
-}
+### Actividad 2
+<ActivityPlaceholder 
+  id='activity02' 
+  unit={frontmatter.unitId}
+/>
+### Actividad 3
+<ActivityPlaceholder 
+  id='activity03' 
+  unit={frontmatter.unitId}
+/>
+### Actividad 4
+<ActivityPlaceholder 
+  id='activity04' 
+  unit={frontmatter.unitId}
+/>  
+### Actividad 5
+<ActivityPlaceholder 
+  id='activity05' 
+  unit={frontmatter.unitId}
+/>
+
 
 ## Aplicación 🛠
 
@@ -62,27 +68,30 @@ En esta fase vas a aplicar lo que aprendiste en la fase de investigación.
 Te voy a proponer un problema sencillo para que repases los conceptos de la 
 fase de investigación.
 
-{unit.actividades
-  .filter(act => act.fase === "apply")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId} 
-    />
-  ))
-}
+### Actividad 6
+<ActivityPlaceholder 
+  id='activity06' 
+  unit={frontmatter.unitId}
+/>
 
 ## Consolidación y metacognición 🤔
 
 Finalmente, en esta fase consolidarás lo aprendido, te autoevaluarás y ofrecerás 
 feedback para mejorar esta unidad para futuros estudiantes.
 
-{unit.actividades
-  .filter(act => act.fase === "reflect")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId} 
-    />
-  ))
-}
+### Actividad 7
+<ActivityPlaceholder 
+  id='activity07' 
+  unit={frontmatter.unitId}
+/>
+### Actividad 8
+<ActivityPlaceholder 
+  id='activity08' 
+  unit={frontmatter.unitId}
+/>
+### Actividad 9
+<ActivityPlaceholder 
+  id='activity09' 
+  unit={frontmatter.unitId}
+/>
+

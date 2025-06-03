@@ -4,9 +4,6 @@ unitId: unit5
 ---
 
 import ActivityPlaceholder from '../../../components/ActivityPlaceholder.astro';
-import unidades from '../../activities/unidades.json';
-
-export const unit = unidades.find(u => u.nombre === frontmatter.title);
 
 ## Introducción 📜
 
@@ -34,48 +31,45 @@ sobre vtables, punteros a funciones miembro y otras estructuras que hacen posibl
 una aplicación que explote el polimorfismo y otros conceptos OOP en la generación de piezas 
 interactivas y creativas.  
 
-{unit.actividades
-  .filter(act => act.fase === "set")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId} 
-    />
-  ))
-}
+### Actividad 1
+<ActivityPlaceholder 
+  id='activity01' 
+  unit={frontmatter.unitId}
+/>
+
 
 ## Investigación 🔎
 
-{unit.actividades
-  .filter(act => act.fase === "seek")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId}
-    />
-  ))
-}
+### Actividad 2
+<ActivityPlaceholder 
+  id='activity02' 
+  unit={frontmatter.unitId}
+/>
 
 ## Aplicación 🛠
 
-{unit.actividades
-  .filter(act => act.fase === "apply")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId} 
-    />
-  ))
-}
+### Actividad 3
+<ActivityPlaceholder 
+  id='activity03' 
+  unit={frontmatter.unitId}
+/>
 
 ## Consolidación y metacognición 🤔
 
-{unit.actividades
-  .filter(act => act.fase === "reflect")
-  .map(act => (
-    <ActivityPlaceholder 
-      id={act.nombre.replace('actividad','activity').replace('.md', '')} 
-      unit={frontmatter.unitId} 
-    />
-  ))
-}
+### Actividad 4
+<ActivityPlaceholder 
+  id='activity04' 
+  unit={frontmatter.unitId}
+/>
+
+### Actividad 5
+<ActivityPlaceholder 
+  id='activity05' 
+  unit={frontmatter.unitId}
+/>
+### Actividad 6
+<ActivityPlaceholder 
+  id='activity06' 
+  unit={frontmatter.unitId}
+/>
+

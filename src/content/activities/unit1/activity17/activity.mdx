@@ -1,8 +1,20 @@
+import P5Sketch from '../../../../components/P5Sketch.astro';
 
-import LoadP5 from "../../../../components/LoadP5.astro";
-import P5Simulation from "../../../../components/P5Simulation.astro";
-import P5Interpolation from "../../../../components/P5Interpolation.astro";
-import P5ColorWheel from "../../../../components/P5ColorWheel.astro";
+## Simulación A
+
+<P5Sketch 
+  sketchUrl="/src/sketches/colorWheel.js" 
+  containerId="colorWheel"
+  styleClass="p5-container-colorWheel"
+/>
+
+## Simulación B
+<P5Sketch 
+  sketchUrl="/src/sketches/interpolation.js" 
+  containerId="interpolation"
+  styleClass="p5-container-interpolation"
+/>
+
 
 #### Implementación de la lista en enlazada
 
@@ -19,18 +31,6 @@ a compilar y ejecutar el proyecto para asegurarte de que todo
 funciona. Nota que ya no diré cómo hacerlo, ya que lo has hecho 
 anteriormente. Si no sabes cómo hacerlo, revisa la actividad anterior. 
 - Modifica el archivo ofApp.h así:
-
-<LoadP5 />
-
-
-Ahora mira esta simulación:
-
-<P5ColorWheel />
-
-
-Para entender cómo funciona mix, observa antes esta simulación:
-
-<P5Interpolation />
 
 
 import TutorialViewer from '../../../../components/TutorialViewer.astro';

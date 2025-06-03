@@ -14,7 +14,7 @@
     "@babel/runtime": "^7.26.10",
     "astro": "^5.8.0",
     "esbuild": ">=0.25.0",
-    "p5": "^1.11.2",
+    "p5": "^1.11.7",
     "rehype-mathjax": "^6.0.0",
     "remark-math": "^6.0.0",
     "sharp": "^0.32.5"
