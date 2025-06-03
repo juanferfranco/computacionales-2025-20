@@ -185,43 +185,73 @@ definitiva de 0.00.
 
 Este curso es de 2 créditos distribuidos en dos sesiones semanales con acompañamiento del docente y una sesión de trabajo independiente. La dedicación total es de 6 horas.
 
-## Workflow del curso
+## Workflow del curso para el trabajo en equipo
 
-Cada unidad del curso se desarrollará en dos semanas y estará organizada en cuatro fases: set, seek, apply y reflect. Durante este tiempo, 
-cada estudiante trabajará en su propio repositorio de GitHub (creado y gestionado con GitHub Classroom), donde llevará una bitácora de 
-aprendizaje y se registrarán todas las evidencias y evaluaciones.
+Esta guía documenta el flujo de trabajo utilizando GitHub como plataforma de desarrollo, seguimiento, entrega y evaluación de evidencias. Este curso lo realizermos 
+como un equipo compuesto por cada estudiante, el profesor y un compañero coevalador en cada unidad. El flujo de trabajo está diseñado para facilitar la colaboración, 
+la autoevaluación, la coevaluación y la evaluación del profesor, asegurando una trazabilidad completa de las entregas y un proceso de aprendizaje reflexivo y colaborativo.
 
-### Semana 1: fase set-seek
+**1. Propósito del flujo:** 
 
-Los estudiantes exploran el problema, investigan conceptos clave y documentan sus ideas y hallazgos en la bitácora.
+* Asegurar trazabilidad completa de las entregas.   
+* Facilitar la autoevaluación, coevaluación y evaluación del profesor.  
+* Centralizar las evidencias por fases: Set/Seek, Apply, Reflect.  
+* Automatizar la captura de entregas y la consolidación de resultados.  
 
-Antes de la primera sesión de la semana 2, el profesor ejecuta un script en su computador que:
+**2. Estructura de ramas y PRs:**
 
-* Captura automáticamente las evidencias de set-seek desde los repositorios.
-* Deja todo listo para la evaluación en clase con cada estudiante.
+* main: rama protegida. Solo el profesor puede hacer merge. Contiene las evidencias definitivas.  
+* unidadX/set-seek: rama de trabajo del estudiante para la fase de exploración.  
+* unidadX/apply: rama de trabajo para el desarrollo de soluciones.  
+* unidadX/reflect: rama para la metacognición, auto y coevaluación.  
 
-### Semana 2: fases apply y reflect
+Cada PR de entrega se genera desde la rama correspondiente hacia main.
 
-**Sesión 1:**
+**3. Cronograma por unidad**
 
-* Los estudiantes comienzan a trabajar en la fase apply, aplicando lo aprendido en la solución de un problema.
-* Mientras trabajan, el profesor pasa por los puestos y realiza la evaluación de set-seek directamente en el aula, diligenciando la 
-rúbrica analítica en el repositorio del estudiante (el archivo rubrica.md), usando su computador. Esta rúbrica es visible pero 
-no editable por el estudiante.
+Semana 1:
 
-**Sesión 2:**
+* El profesor activa unidadX/set-seek como rama por defecto.  
+* El estudiante trabaja y hace commit/push en esa rama.  
 
-Antes de clase, el profesor ejecuta de nuevo el script para capturar las evidencias de apply.
+Semana 2, Sesión 1:
 
-En clase, los estudiantes trabajan en la fase reflect:
+* El profesor automatiza la creación de un PR unidadX/set-seek → main.  
+* El PR queda abierto, y se hace merge luego de la evaluación.  
+* El profesor activa unidadX/apply como nueva rama por defecto.  
+* El estudiante y el profesor escriben directamente en rubrica.md durante esta semana (mientras la rama activa es unidadX/apply).  
 
-* Completan su autoevaluación (diligenciando su parte de la rúbrica).
-* Realizan la coevaluación de un compañero mediante un pull request automatizado que edita el archivo 
-rubrica.md del compañero.
-* Registran en su propio repositorio a quién evaluaron, con enlace al PR, para garantizar trazabilidad.
-* Durante esta sesión, el profesor evalúa con cada estudiante la fase apply, actualizando su rúbrica en GitHub.
-* Al finalizar la segunda sesión, el profesor verifica que todos los estudiantes hayan completado su autoevaluación, 
-realizado la coevaluación de un compañero y escrito una retroalimentación sobre la unidad.
+Semana 2, Sesión 2:
 
-En la semana siguiente, se actualiza la rúbrica con los puntajes finales y se calcula la nota definitiva que será publicada 
-en el sistema de la Universidad.
+* El profesor genera el PR unidadX/apply → main.  
+* La autoevaluación y evaluación del profesor sobre la fase apply también se hacen directamente en rubrica.md mientras unidadX/reflect está activa.  
+* El PR permanece abierto y se hace merge posterior a la evaluación, que puede ocurrir en cualquier momento durante la sesión.  
+* El profesor activa unidadX/reflect como rama por defecto para las actividades finales.  
+* Durante esta sesión, otro estudiante realiza una coevaluación de la unidad completa (set-seek y apply) de un compañero, con fines formativos. 
+Esta evaluación no se escribe en el repositorio del evaluado, ni se deja como comentario en el PR (ya que puede ser cerrado en cualquier momento), sino 
+que queda únicamente documentada en coevaluacion.md dentro del repositorio del estudiante que realiza la coevaluación.
+
+Fin de la unidad:
+
+Antes de finalizar la sesión 2, el profesor genera el PR final unidadX/reflect → main, consolidando todas las evidencias.  
+
+El profesor corre un script local para:
+
+* Consolidar auto, co y heteroevaluación en rubrica.md.  
+* Leer reflect.md y validar aportes metacognitivos.  
+* Leer el archivo coevaluacion.md.  
+* Integrar la coevaluación en rubrica.md como parte del juicio evaluativo final.  
+* Calcular la nota definitiva.  
+* Subir la nota al sistema institucional.  
+* Hacer merge final a main.  
+
+La rama unidadX/reflect se mantiene como activa hasta que comience la siguiente unidad. Durante este tiempo, el estudiante podrá realizar ajustes 
+formativos a sus bitácoras, sin que esto afecte la nota sumativa, y podrá usarlos como base para solicitar retroalimentación o asesorías al profesor.
+
+**4. Archivos clave**
+
+* set-seek.md, apply.md, reflect.md: desarrollo por fase.  
+* rubrica.md: evaluación estructurada con campos para cada actor (profesor y estudiante). La autoevaluación se escribe directamente en este archivo 
+mientras las ramas unidadX/apply y unidadX/reflect están activas.
+* coevaluacion.md: evidencia en el repositorio del estudiante que realizó la coevaluación de un compañero. Contiene el nombre del estudiante 
+evaluado, la fecha, criterios aplicados y cualquier observación relevante.
