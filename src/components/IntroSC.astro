@@ -51,21 +51,18 @@ new p5((p) => {
 
     p.stroke(0, 255, 0);
     p.noFill();
+  };
 
-    p.mousePressed = () => {
-      p.redraw();
-    };
+  p.mousePressed = () => {
+    p.redraw();
+  };
 
-    p.windowResized = () => {
+  p.windowResized = () => {
     const container = document.getElementById('sketch-container');
     const width = container?.offsetWidth;
     const height = container?.offsetHeight;
     p.resizeCanvas(width, height);
     p.redraw();
-  };
-
-
-
   };
 });
 
