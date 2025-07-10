@@ -1,11 +1,10 @@
-#### Componentes principales de la arquitectura Hack 
+#### Control de flujo con saltos
 
+Vamos a resolver juntos este problema:
 
-**Enunciado**: usando el simulador del computador Hack y el documento ["Machine Language"](https://www.nand2tetris.org/_files/ugd/44046b_7ef1c00a714c46768f08c459a6cab45a.pdf) (páginas 62-72), identifica los componentes principales de la arquitectura Hack:
+Escribe un programa que compare el valor almacenado en la dirección de memoria 5 con el valor 10. Si el valor es menor que 10, guarda el valor 1 en la dirección 7. Si el valor es mayor o igual a 10, guarda el valor 0 en la dirección 7.
 
-- CPU: ¿Cuáles son sus partes principales? (ALU, registros A y D, PC...).
-- Memoria: ¿Cómo se organiza la memoria en el computador Hack? (RAM, ROM, direcciones...). ¿Qué es un mapa de memoria?
-- Registros A y D: ¿Cuál es la función de cada uno? ¿En qué se diferencian?
-- Contador de programa (PC): ¿Cuál es su función en el ciclo Fetch-Decode-Execute?
-
-**Entrega**: un diagrama de la arquitectura Hack con sus componentes principales etiquetados y una breve descripción de la función de cada componente. Para el diagrama puedes usar la herramienta [draw.io](https://app.diagrams.net/).
+:::caution[📤 Bitácora] 
+* Escribe tu mismo el programa.
+* Simula paso a paso. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
+:::

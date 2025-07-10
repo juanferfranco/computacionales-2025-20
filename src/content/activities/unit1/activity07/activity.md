@@ -1,10 +1,15 @@
 #### Operaciones aritméticas básicas
 
-Enunciado: Escribe un programa en ensamblador Hack que realice las siguientes operaciones:
+Vamos a resolver juntos este problema:
 
-- Guarda el valor 5 en el registro A.
-- Guarda el valor 10 en el registro D.
-- Suma el contenido del registro A y el registro D, y guarda el resultado en el registro D.
-- Resta el valor 3 al contenido del registro D y guarda el resultado en la memoria en la dirección 10.
+"Modifica el programa anterior para que dibuje una línea horizontal negra de 16 pixeles de largo en la esquina superior izquierda de la pantalla. (Recuerda que cada word en la memoria representa 16 pixeles)."
 
-**Entrega**: el código del programa en ensamblador Hack y una captura de pantalla del simulador mostrando el estado final de los registros y la memoria (para verificar los resultados).
+:::caution[📤 Bitácora] 
+* Escribe el programa.
+* Simula paso a paso. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
+* Reporta el programa final.
+* Construye tu programa PASO A PASO mediante pruebas. Indica qué característica vas 
+a implementar y cómo la probaste.
+* Muestra el programa final y cómo lo probaste. 
+:::
+

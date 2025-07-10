@@ -1,10 +1,10 @@
-#### El ciclo de instrucción paso a paso
+#### Dibujando un punto en la pantalla
 
-**Enunciado**: elige uno de los programas que modificaste en las actividades previas. Usando el simulador, ejecuta el programa paso a paso y documenta cada ciclo Fetch-Decode-Execute. Para cada instrucción:
+Vamos a resolver juntos este problema:
 
-- ¿Qué valor tiene el PC al inicio del ciclo?
-- ¿Qué instrucción se busca en la memoria?
-- ¿Cómo se decodifica la instrucción?
-- ¿Qué operación se realiza en la fase Execute? ¿Cómo cambian los valores de los registros A, D y M (memoria)?
+"La pantalla del computador Hack se controla a través de un mapa de memoria que comienza en la dirección 16384 (SCREEN). Cada bit en este mapa de memoria representa un pixel en la pantalla (1 = negro, 0 = blanco). Escribe un programa que dibuje un punto negro en la esquina superior izquierda de la pantalla. (Recuerda que la esquina superior izquierda corresponde al primer bit del primer word en la dirección SCREEN)."
 
-**Entrega**: una tabla que documente el ciclo Fetch-Decode-Execute para cada instrucción del programa elegido.
+:::caution[📤 Bitácora] 
+* Escribe tu mismo el programa.
+* Simula paso a paso. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
+:::

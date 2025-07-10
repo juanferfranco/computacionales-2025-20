@@ -1,10 +1,11 @@
-#### Profundizando en las instrucciones del lenguaje ensamblador
+#### Implementando un ciclo simple
 
-**Enunciado**: el documento "Machine Language" describe dos tipos de instrucciones en el lenguaje ensamblador Hack: A-instructions y C-instructions (páginas 64-69).
+Vamos a resolver juntos este problema:
 
-- ¿Cuál es la función de cada tipo de instrucción?
-- ¿Cómo se representa cada tipo de instrucción en binario?
-- Proporciona al menos 3 ejemplos de cada tipo de instrucción, explicando qué hace cada una. Puedes usar las tablas de las páginas 67 y 69 del documento como referencia para los códigos de operación (comp), destinos (dest) y saltos (jump).
+"Crea un programa que use un ciclo para sumar los números del 1 al 5 y guarde el resultado en la dirección de memoria 12."
 
-**Entrega**: la solución a cada una de las preguntas planteadas en el enunciado. 
+:::caution[📤 Bitácora] 
+* Escribe tu mismo el programa.
+* Simula paso a paso. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
+:::
 

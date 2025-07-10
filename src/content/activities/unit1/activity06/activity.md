@@ -1,9 +1,12 @@
-#### Manejo básico de la memoria
+#### Dibujando una línea horizontal
 
-**Enunciado**: la memoria en el computador Hack se organiza como una secuencia de direcciones, donde cada dirección almacena un valor de 16 bits. El documento "Machine Language" menciona diferentes modos de direccionamiento (página 60).
+Vamos a resolver juntos este problema:
 
-- ¿Qué es el direccionamiento directo? ¿Cómo se usa en el lenguaje ensamblador Hack?
-- ¿Qué significa M=D en lenguaje ensamblador Hack? ¿Y D=M?
-- Explica con tus palabras el concepto de "puntero" en el contexto de la memoria y proporciona un ejemplo sencillo en lenguaje ensamblador Hack. (Puedes usar el ejemplo de la página 61 del documento como inspiración, pero adáptalo a un caso más simple).
+"Modifica el programa anterior para que dibuje una línea horizontal negra de 16 pixeles de largo en la esquina superior izquierda de la pantalla. (Recuerda que cada word en la memoria representa 16 pixeles)."
 
-**Entrega**: respuestas a las preguntas y un ejemplo de código en ensamblador que ilustre el concepto de puntero y su uso para acceder a la memoria.
+:::caution[📤 Bitácora] 
+* Escribe tu mismo el programa.
+* Simula paso a paso. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
+:::
+
+
