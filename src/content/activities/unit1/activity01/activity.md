@@ -18,8 +18,7 @@ M=D
 
 ¿Qué crees que haga este programa? 
 
-Para responder a esta pregunta vamos a analizarlo paso a paso usando un simulador de la CPU Hack que está 
-[aquí](https://nand2tetris.github.io/web-ide/cpu).
+Para responder a esta pregunta vamos a analizarlo paso a paso usando un simulador de la CPU Hack que está [aquí](https://nand2tetris.github.io/web-ide/cpu).
 
 Para ejecutar este programa la CPU realiza un **ciclo** constante llamado Fetch-Decode-Execute.
 
