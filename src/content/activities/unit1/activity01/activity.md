@@ -38,7 +38,7 @@ Este ciclo se repite continuamente mientras la computadora esté encendida, proc
 tras otra. Es la base del funcionamiento de cualquier procesador.
 
 :::note[🧐🧪✍️ Experimento]
-Ahora es tu turno. Crear un archivo llamado `program.asm` y copia el código del programa anterior. 
+Ahora es tu turno. Crea un archivo llamado `program.asm` y copia el código del programa anterior. 
 Ejecuta el programa en el simulador de la CPU Hack y observa cómo se comporta.
 ¿Qué sucede? ¿Qué valor se almacena en la dirección de memoria 16? ¿Por qué crees que es ese valor?
 ¿Qué instrucciones se ejecutan en cada ciclo Fetch-Decode-Execute?
