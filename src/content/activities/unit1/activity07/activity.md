@@ -1,8 +1,8 @@
-#### Operaciones aritméticas básicas
+#### Entrada salida interactiva
 
-Vamos a resolver juntos este problema:
-
-"Modifica el programa anterior para que dibuje una línea horizontal negra de 16 pixeles de largo en la esquina superior izquierda de la pantalla. (Recuerda que cada word en la memoria representa 16 pixeles)."
+Modifica el programa de la actividad anterior de tal manera que puedas mover la línea
+horizontal de derecha a izquierda usando las teclas **d** y **i** respectivamente. Tu 
+programa no tiene que verificar si la línea se sale de la pantalla.
 
 :::caution[📤 Bitácora] 
 * Escribe el programa.
