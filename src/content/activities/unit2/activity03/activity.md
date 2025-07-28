@@ -1,32 +1,12 @@
-#### Convierte un ciclo while en un ciclo for
+#### Entrada salida interactiva
 
-**Enunciado**: considera el siguiente programa: 
+Modifica el programa de la actividad anterior de tal manera que puedas mover la línea
+horizontal de derecha a izquierda usando las teclas **d** y **i** respectivamente. Tu 
+programa no tiene que verificar si la línea se sale de la pantalla.
 
-``` c
-//Adds 1+...+100.
- int i=1;
- int sum=0;
- 
- while(i <=100){
-    sum+= i;
-    i++;
- }
- ```
+Traduce este programa a lenguaje C++ para que relaciones cómo los conceptos de alto nivel se traducen a bajo nivel.
 
- Vamos a transformar este programa a su equivalente usando un ciclo for:
-
- ``` c
-//Adds 1+...+100.
-int sum=0;
-for(int i = 1; i <=100; i++){
-    sum+= i;
-}
- ```
-
-- Analiza los programas anteriores y asegúrate de entender por qué son equivalentes.
-- Convierte la versión del for a ensamblador.
-- No olvides comprobar el funcionamiento de los programas en ensamblador en el simulador.
-- Compara las versiones en ensamblador del while y del for. ¿Qué puedes concluir?
-
-**Entrega**: la solución a las cuestiones planteadas en el enunciado.
-
+:::caution[📤 Bitácora] 
+* Escribe los programas.
+* Simula paso a paso en lenguaje ensamblador. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
+:::

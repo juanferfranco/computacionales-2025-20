@@ -1,13 +1,12 @@
-#### El Poder del Bajo Nivel
+#### Dibujando un punto en la pantalla
 
-**Enunciado**: reflexiona sobre las siguientes preguntas y documenta tus respuestas en tu bitácora:
+Vamos a resolver juntos este problema:
 
-- ¿Por qué crees que es importante para un ingeniero en diseño de entretenimiento digital comprender la programación en ensamblador, sabiendo que es poco probable que te dediques profesionalmente a 
-programar en este nivel?
+La pantalla del computador Hack se controla a través de un mapa de memoria que comienza en la dirección 16384 (SCREEN). Cada bit en este mapa de memoria representa un pixel en la pantalla (1 = negro, 0 = blanco). Escribe un programa que dibuje un punto negro en la esquina superior izquierda de la pantalla. (Recuerda que la esquina superior izquierda corresponde al primer bit del primer word en la dirección SCREEN).
 
-- ¿Qué ventajas y desventajas ofrece la programación en ensamblador en comparación con lenguajes de alto nivel como Python o Javascript, C++, C#?
+Traduce este programa a lenguaje C++ para que relaciones cómo los conceptos de alto nivel se traducen a bajo nivel.
 
-- ¿Cómo se relaciona el conocimiento de ensamblador con el rendimiento y la optimización en el desarrollo de aplicaciones interactivas interactivas?
-
-**Entrega**: entrada en la bitácora de aprendizaje con la reflexión sobre las preguntas planteadas.
-
+:::caution[📤 Bitácora] 
+* Escribe tu mismo ambos programas.
+* Simula paso a paso el programa en ensamblador. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
+:::

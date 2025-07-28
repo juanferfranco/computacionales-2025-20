@@ -1,58 +1,62 @@
-#### Escritura usando punteros
+#### Convierte un ciclo while en un ciclo for
 
-**Enunciado**: un puntero es una variable que almacena la dirección de memoria de otra variable. Observa el siguiente programa escrito en C++:
+**Enunciado**: considera el siguiente programa: 
 
-``` cpp
-int a = 10;
-int* p;
-p = &a;
-*p = 20;
+``` c
+//Adds 1+...+100.
+ int i=1;
+ int sum=0;
+ 
+ while(i <=100){
+    sum+= i;
+    i++;
+ }
+ ```
+
+Una traducción a ensamblador es como sigue: 
+
+``` asm
+// Adds1+...+100.
+ @i // i refers to some memory location.
+ M=1 // i=1
+ @sum // sum refers to some memory location.
+ M=0 // sum=0
+ (LOOP)
+ @i
+ D=M // D=i
+ @100
+ D=D-A // D=i-100
+ @END
+ D;JGT // If(i-100)>0 gotoEND
+ @i
+ D=M // D=i
+ @sum
+ M=D+M // sum=sum+i
+ @i
+ M=M+1 // i=i+1
+ @LOOP
+ 0;JMP // GotoLOOP
+ (END)
+ @END
+ 0;JMP // Infinite loop
 ```
 
-El programa anterior modifica el contenido de la variable **a** por medio de la variable **p**. **p** es un puntero porque almacena la dirección de memoria de la variable **a**. En este caso el valor de la variable **a** será 20 luego de ejecutar *p = 20;. 
+Vamos a transformar este programa a su equivalente usando un ciclo for:
 
-Ahora analiza con detenimiento:
+ ``` cpp
+//Adds 1+...+100.
+int sum=0;
+for(int i = 1; i <=100; i++){
+    sum+= i;
+}
+ ```
 
-- ¿Cómo se **declara** un puntero en C++? 
+- Analiza los programas con while y for asegúrate de entender por qué son equivalentes.
+- Convierte la versión del for a ensamblador.
+- No olvides comprobar el funcionamiento de los programas en ensamblador en el simulador.
+- Compara las versiones en ensamblador del while y del for. ¿Qué puedes concluir?
 
-``` cpp
-int* p;
-```
+:::caution[📤 Bitácora] 
+Escribe en tu bitácora el programa en ensamblador y las conclusiones que has sacado de la comparación entre los dos programas.
+:::
 
-**p** es una variable que almacenará la dirección de otra variable. Dicha variable almacenará número enteros.
-
-- ¿Cómo se **define** (nota que antes preguntamos cómo se **declara**) un puntero en C++? 
-
-``` cpp
-p = &a;. 
-```
-
-Definir el puntero es **inicializar** el valor del puntero, es decir, guardar la dirección de una variable. En este caso p contendrá la dirección de a o podemos decir que p apunta a **a**
-
-- ¿Cómo se almacena en C++ la dirección de memoria de una variable? Con el operador **&**. 
-
-``` cpp
-p = &a;
-```
-
-- ¿Cómo se escribe el contenido de la variable a la que apunta un puntero? Con el operador *. 
-
-``` cpp
-*p = 20;
-```
-
-En este caso como **p** contiene la dirección de **a**. Por tanto, se está modificando el valor 
-de la variable **a** por medio de **p**.
-
-Ahora tu misión será convertir este programa a ensamblador:
-
-``` cpp
-int a = 10;
-int* p;
-p = &a;
-*p = 20;
-```
-
-- Por favor, te ruego que verifiques con el simulador. No olvides que p debe guardar la dirección de **a** 
-
-**Entrega**: la solución al problema anterior.

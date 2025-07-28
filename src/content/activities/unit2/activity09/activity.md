@@ -1,48 +1,16 @@
-#### Ingeniería inversa
+#### Feedback 
 
-**Enunciado**: considera el siguiente programa en lenguaje de máquina. Salva el programa 
-en un archivo "test.hack" y cárgalo en el simulador. Una vez cargado lo puedes 
-visualizar en formato **asm**.
+**Mejorando la experiencia: tu feedback es clave**
 
-```
-0100000000000000
-1110110000010000
-0000000000010000
-1110001100001000
-0110000000000000
-1111110000010000
-0000000000010011
-1110001100000101
-0000000000010000
-1111110000010000
-0100000000000000
-1110010011010000
-0000000000000100
-1110001100000110
-0000000000010000
-1111110010101000
-1110101010001000
-0000000000000100
-1110101010000111
-0000000000010000
-1111110000010000
-0110000000000000
-1110010011010000
-0000000000000100
-1110001100000011
-0000000000010000
-1111110000100000
-1110111010001000
-0000000000010000
-1111110111001000
-0000000000000100
-1110101010000111
-```
+Tu perspectiva como estudiante es el recurso más importante para que yo pueda mejorar este curso. Esta actividad es tu espacio para compartir de forma honesta qué funcionó, qué no y qué ideas tienes para hacer la experiencia de aprendizaje aún mejor.
 
-- Traduce este programa a un lenguaje de alto con el que estés 
-familiarizado, puede ser C#, java o C++. Trata el teclado como la variable 
-KBD y la pantalla como el arreglo SCREEN. Recuerda que cada posición del arreglo 
-SCREEN representa 16 pixeles de la pantalla. En total la pantalla 
-tienen 512*256 pixeles (Entonces ¿Cuále es el tamaño del arreglo SCREEN?) 
+::::caution[📤 Bitácora]
 
-**Entrega**: en tu bitácora la traducción del programa a alto nivel.
+Responde a las siguientes preguntas. La sinceridad y el detalle en tus respuestas son cruciales para que pueda tomar acciones concretas.
+
+1. **Continuar**: ¿Qué actividad, problema o explicación de esta unidad te ayudó más a entender la conexión entre el bajo y el alto nivel? ¿Qué debería mantener sin cambios?
+2. **Dejar de hacer**: ¿Hubo alguna actividad o concepto que te pareció redundante, demasiado confuso o que aportó poco valor a tu aprendizaje? ¿Qué eliminarías o modificarías?
+3. **Empezar a hacer**: ¿Qué idea tienes para mejorar la próxima unidad? ¿Hay algún tipo de recurso que 
+te habría ayudado a entender mejor los punteros o los arreglos?
+4. **Ritmo y Dificultad**: en una escala del 1 (muy fácil/lento) al 5 (muy difícil/rápido), ¿Cómo calificarías el salto de dificultad de la Unidad 1 a la Unidad 2? ¿El ritmo fue adecuado? Justifica tu calificación.
+5. **Comentario Adicional**: ¿Alguna otra cosa que quieras compartir sobre cómo te sentiste aprendiendo estos conceptos?
