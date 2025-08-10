@@ -3,9 +3,8 @@ title: Unidad 2
 unitId: unit2
 ---
 
-import ActivityPlaceholder from '../../../components/ActivityPlaceholder.astro';
-
 ## Introducción 📜
+
 En esta unidad descubrirás cómo se traducen algunos conceptos fundamentales de
 la programación en alto nivel, como condicionales, ciclos, punteros y arreglos, 
 a lenguaje ensamblador. Utilizarás el lenguaje Hack de la unidad anterior 
@@ -24,65 +23,297 @@ predice, ejecuta, observa y reflexiona.
 
 ### Actividad 01
 
-<ActivityPlaceholder 
-  id='activity01'
-  unit={frontmatter.unitId} 
-/>
+#### Dibujando un punto en la pantalla
+
+Vamos a resolver juntos este problema:
+
+La pantalla del computador Hack se controla a través de un mapa de memoria que comienza en la dirección 16384 (SCREEN). Cada bit en este mapa de memoria representa un pixel en la pantalla (1 = negro, 0 = blanco). Escribe un programa que dibuje un punto negro en la esquina superior izquierda de la pantalla. (Recuerda que la esquina superior izquierda corresponde al primer bit del primer word en la dirección SCREEN).
+
+Traduce este programa a lenguaje C++ para que relaciones cómo los conceptos de alto nivel se traducen a bajo nivel.
+
+:::caution[📤 Bitácora] 
+* Escribe tu mismo ambos programas.
+* Simula paso a paso el programa en ensamblador. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
+:::
 
 ### Actividad 02
 
-<ActivityPlaceholder 
-  id='activity02'
-  unit={frontmatter.unitId} 
-/>
+#### Dibujando una línea horizontal
+
+Vamos a resolver juntos este problema:
+
+Modifica el programa anterior para que dibuje una línea horizontal negra de 16 pixeles de largo en la esquina superior izquierda de la pantalla. (Recuerda que cada word en la memoria representa 16 pixeles).
+
+Traduce este programa a lenguaje C++ para que relaciones cómo los conceptos de alto nivel se traducen a bajo nivel.
+
+:::caution[📤 Bitácora] 
+* Escribe tu mismo los programas.
+* Simula paso a paso el programa ensamblador. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
+:::
 
 ### Actividad 03
 
-<ActivityPlaceholder 
-  id='activity03'
-  unit={frontmatter.unitId} 
-/>
+#### Entrada salida interactiva
+
+Modifica el programa de la actividad anterior de tal manera que puedas mover la línea
+horizontal de derecha a izquierda usando las teclas **d** y **i** respectivamente. Tu 
+programa no tiene que verificar si la línea se sale de la pantalla.
+
+Traduce este programa a lenguaje C++ para que relaciones cómo los conceptos de alto nivel se traducen a bajo nivel.
+
+:::caution[📤 Bitácora] 
+* Escribe los programas.
+* Simula paso a paso en lenguaje ensamblador. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
+:::
+
 
 ## Seek: Investigación 🔎
 
 ### Actividad 04
 
-<ActivityPlaceholder 
-  id='activity04'
-  unit={frontmatter.unitId} 
-/>
+#### Convierte un ciclo while en un ciclo for
+
+**Enunciado**: considera el siguiente programa: 
+
+``` c
+//Adds 1+...+100.
+ int i=1;
+ int sum=0;
+ 
+ while(i <=100){
+    sum+= i;
+    i++;
+ }
+ ```
+
+Una traducción a ensamblador es como sigue: 
+
+``` asm
+// Adds1+...+100.
+ @i // i refers to some memory location.
+ M=1 // i=1
+ @sum // sum refers to some memory location.
+ M=0 // sum=0
+ (LOOP)
+ @i
+ D=M // D=i
+ @100
+ D=D-A // D=i-100
+ @END
+ D;JGT // If(i-100)>0 gotoEND
+ @i
+ D=M // D=i
+ @sum
+ M=D+M // sum=sum+i
+ @i
+ M=M+1 // i=i+1
+ @LOOP
+ 0;JMP // GotoLOOP
+ (END)
+ @END
+ 0;JMP // Infinite loop
+```
+
+Vamos a transformar este programa a su equivalente usando un ciclo for:
+
+ ``` cpp
+//Adds 1+...+100.
+int sum=0;
+for(int i = 1; i <=100; i++){
+    sum+= i;
+}
+ ```
+
+- Analiza los programas con while y for asegúrate de entender por qué son equivalentes.
+- Convierte la versión del for a ensamblador.
+- No olvides comprobar el funcionamiento de los programas en ensamblador en el simulador.
+- Compara las versiones en ensamblador del while y del for. ¿Qué puedes concluir?
+
+:::caution[📤 Bitácora] 
+Escribe en tu bitácora el programa en ensamblador y las conclusiones que has sacado de la comparación entre los dos programas.
+:::
+
 
 ### Actividad 05
 
-<ActivityPlaceholder 
-  id='activity05'
-  unit={frontmatter.unitId} 
-/>
+##### Punteros
+
+Un puntero es una variable que almacena la dirección de memoria de otra variable. Observa el siguiente programa escrito en C++:
+
+``` cpp
+int a = 10;
+int* p;
+p = &a;
+*p = 20;
+```
+
+El programa anterior modifica el contenido de la variable **a** por medio de la variable **p**. **p** es un puntero porque almacena la dirección de memoria de la variable **a**. En este caso el valor de la variable **a** será 20 luego de ejecutar *p = 20;. 
+
+Ahora analiza con detenimiento:
+
+- ¿Cómo se **declara** un puntero en C++? 
+
+``` cpp
+int* p;
+```
+
+**p** es una variable que almacenará la dirección de otra variable. Dicha variable almacenará número enteros.
+
+- ¿Cómo se **define** (nota que antes preguntamos cómo se **declara**) un puntero en C++? 
+
+``` cpp
+p = &a;. 
+```
+
+Definir el puntero es **inicializar** el valor del puntero, es decir, guardar la dirección de una variable. En este caso p contendrá la dirección de a o podemos decir que p apunta a **a**
+
+- ¿Cómo se almacena en C++ la dirección de memoria de una variable? Con el operador **&**. 
+
+``` cpp
+p = &a;
+```
+
+- ¿Cómo se escribe el contenido de la variable a la que apunta un puntero? Con el operador *. 
+
+``` cpp
+*p = 20;
+```
+
+En este caso como **p** contiene la dirección de **a**. Por tanto, se está modificando el valor 
+de la variable **a** por medio de **p**.
+
+Ahora vas a usar un puntero para leer la posición de memoria a la que este apunta, 
+es decir, vas a leer por medio del puntero la variable cuya dirección está almacenada en él.
+
+``` cpp
+int a = 10;
+int b = 5;
+int *p;
+p = &a;
+b = *p;
+```
+
+En este caso: 
+
+``` cpp
+b = *p;
+```
+
+el código anterior hace que el valor de b cambie de 5 a 10 porque p apunta a **a** y con *p a la derecha del igual estás leyendo el contenido de la variable apuntada.
+
+
+:::caution[📤 Bitácora]
+Convierte estos programas a ensamblador y realiza la simulación paso a paso.
+Recuerda la metodología: predice, ejecuta, observa y reflexiona.
+
+``` cpp
+int a = 10;
+int* p;
+p = &a;
+*p = 20;
+```
+
+``` cpp
+int a = 10;
+int b = 5;
+int *p;
+p = &a;
+b = *p;
+```
+:::
 
 ## Apply: Aplicación 🛠
 
 ### Actividad 06
 
-<ActivityPlaceholder 
-  id='activity06'
-  unit={frontmatter.unitId} 
-/>
+#### Experimenta con arreglos
+
+Los arreglos son colecciones de datos en la memoria. 
+
+Considera el siguiente programa
+
+``` cpp
+
+int arr[] = {1,2,3,4,5,6,7,8,9,10};
+int sum = 0;
+
+for (int j = 0; j < 10; j++) {
+    sum = sum + arr[j];
+}
+
+```
+
+:::caution[📤 Bitácora]
+- Implementa el programa anterior en lenguaje ensamblador aplicando el concepto de punteros.  
+- Considera que los datos del arreglo están almacenados **desde** la dirección 16. Inicializa 
+el arreglo en lenguaje ensamblador.  
+- Simula paso a paso el programa en ensamblador. Recuerda la metodología: predice, ejecuta, observa y reflexiona.  
+- Construye tu programa PASO A PASO mediante pruebas. Indica qué característica vas 
+a implementar con cada prueba y cómo la probaste.
+- Muestra el programa final y cómo lo probaste. 
+:::
+
 
 ## Reflect: Consolidación y metacognición 🤔
 
 ### Actividad 07
 
-<ActivityPlaceholder 
-  id='activity07'
-  unit={frontmatter.unitId} 
-/>
+#### Autoevaluación
+
+**Mirando hacia adentro: autoevaluación de conceptos y proceso**
+
+El objetivo de esta actividad es que recuperes de tu memoria los conceptos que conectan la programación de alto nivel con el lenguaje ensamblador. Al forzarte a recordar sin ver tus notas (práctica de recuperación), estás fortaleciendo las conexiones neuronales de ese conocimiento. Además, reflexionarás sobre tu proceso para convertirte en un aprendiz más consciente y estratégico.
+
+:::caution[📤 Bitácora]
+Sin consultar tus apuntes, código previo o el simulador, responde a las siguientes preguntas con tus propias palabras. La meta es el esfuerzo por recordar, no la perfección.
+
+**Parte 1: recuperación de conocimiento (Retrieval Practice)**
+
+1.  Explica cómo se representa y manipula un puntero en el lenguaje ensamblador de Hack. Describe las operaciones equivalentes a `p = &a` (asignar dirección) y `*p = 20` (escribir a través del puntero) usando instrucciones de ensamblador.
+2.  ¿Cómo implementarías el acceso a un elemento de un arreglo, como `arr[j]`, en lenguaje ensamblador? Describe el rol de la dirección base del arreglo y el índice `j` en esta operación.
+
+**Parte 2: reflexión sobre tu proceso (Metacognición)**
+
+1.  ¿Cuál fue el concepto más abstracto o difícil de "traducir" de C++ a ensamblador en esta unidad (punteros, ciclos, arreglos)? ¿Qué hiciste para lograr entenderlo?  
+2.  En la Actividad 06 se sugirió construir el programa "PASO A PASO mediante pruebas". 
+¿Cómo te ayudó este enfoque a manejar la complejidad del problema?  
+3.  Esta unidad fue el "puente" hacia C++. ¿Qué concepto de bajo nivel te sientes más seguro de poder identificar cuando lo veas implementado en C++?
+:::
+
 ### Actividad 08
-<ActivityPlaceholder 
-  id='activity08'
-  unit={frontmatter.unitId} 
-/>
+
+#### Coeveluyación
+
+**Aprendiendo juntos: coevaluación constructiva**
+
+En esta actividad vas a revisar la actividad 06 de tu compañero. Vas a simular paso 
+a paso su programa y dejarle comentarios constructivos. Recuerda que todo lo harás 
+en tu propia bitácora de aprendizaje y luego compartirás lo que registraste con tu compañero.
+
+:::caution[📤 Bitácora]
+- Copia la url de la bitácora revisada.  
+- Copia el programa de tu compañero.
+- Describe detalladamente qué pruebas vas a realizar para saber si el programa funciona correctamente.
+- Reporta los resultados de las pruebas.
+:::
+
 ### Actividad 09    
-<ActivityPlaceholder 
-  id='activity09'
-  unit={frontmatter.unitId} 
-/>
+
+#### Feedback 
+
+**Mejorando la experiencia: tu feedback es clave**
+
+Tu perspectiva como estudiante es el recurso más importante para que yo pueda mejorar este curso. Esta actividad es tu espacio para compartir de forma honesta qué funcionó, qué no y qué ideas tienes para hacer la experiencia de aprendizaje aún mejor.
+
+:::caution[📤 Bitácora]
+
+Responde a las siguientes preguntas. La sinceridad y el detalle en tus respuestas son cruciales para que pueda tomar acciones concretas.
+
+1. **Continuar**: ¿Qué actividad, problema o explicación de esta unidad te ayudó más a entender la conexión entre el bajo y el alto nivel? ¿Qué debería mantener sin cambios?
+2. **Dejar de hacer**: ¿Hubo alguna actividad o concepto que te pareció redundante, demasiado confuso o que aportó poco valor a tu aprendizaje? ¿Qué eliminarías o modificarías?
+3. **Empezar a hacer**: ¿Qué idea tienes para mejorar la próxima unidad? ¿Hay algún tipo de recurso que 
+te habría ayudado a entender mejor los punteros o los arreglos?
+4. **Ritmo y Dificultad**: en una escala del 1 (muy fácil/lento) al 5 (muy difícil/rápido), ¿Cómo calificarías el salto de dificultad de la Unidad 1 a la Unidad 2? ¿El ritmo fue adecuado? Justifica tu calificación.
+5. **Comentario Adicional**: ¿Alguna otra cosa que quieras compartir sobre cómo te sentiste aprendiendo estos conceptos?
+:::
+
