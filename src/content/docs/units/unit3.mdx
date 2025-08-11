@@ -3,8 +3,11 @@ title: Unidad 3
 unitId: unit3
 ---
 
-:::danger[NO COMIENCES A TRABAJAR AÚN]
-Unidad en contrucción
+:::danger[NO DEBES USAR IA PARA REALIZAR LAS ACTIVIDADES DE ESTA UNIDAD]
+Lo que busco con esta unidad es que transformes tu cerebro mediante  
+un PROCESO cognitivo de experimentación, observación, reflexión y 
+conclusión: INVESTIGACIÓN EN ACCIÓN. Lo que cambia tu cerebro no es 
+el resultado, es el PROCESO.
 :::
 
 ## Introducción 📜
@@ -99,10 +102,10 @@ En la esquina superior derecha podrás ver las opciones de depuración:
 
 Familiarízate con estas opciones, te serán de mucha utilidad en el futuro.
 
-:::caution[📤 Bitácora] 
+Reflexión final de esta actividad:
+
 1. ¿Para qué sirven los breakpoints?
 2. ¿Para qué se usa la ventana de depuración Autos?
-:::
 
 ### Actividad 02
 
@@ -319,9 +322,10 @@ Paso por Puntero:
 
 La función recibe la dirección de la variable original. Accediendo al valor mediante la indirección (*), se puede modificar el contenido de la variable original. Así, c se convierte en 15 después de la llamada a modificarPorPuntero.
 
-:::caution[📤 Bitácora]
+Reflexión final para esta actividad:
 
-Implementa tres versiones de una función para intercambiar (swap) los valores de dos variables enteras, utilizando:
+Implementa tres versiones de una función para intercambiar (swap) los valores 
+de dos variables enteras, utilizando:
 
 - Paso por valor.  
 - Paso por referencia (usando referencias).  
@@ -350,8 +354,6 @@ Esta función debe intercambiar los valores de a y b utilizando punteros. Recuer
 
 1. Muestra el código con la implementación de las funciones de swap.
 2. Muestra los resultados de las pruebas realizadas en la función main().
-
-:::
 
 ### Actividad 03
 
@@ -464,11 +466,11 @@ int main() {
 }
 ```
 
-:::caution[📤 Bitácora]
+Reflexión final para esta actividad:
+
 Revisa de nuevo el programa anterior y construye tu propio mapa de memoria indicando en qué parte del 
 mapa se ubican las variables y constantes globales, locales, estáticas y de la memoria dinámica y en 
 qué parte del mapa se encuentran las funciones y el mensaje de solo lectura.
-:::
 
 ### Actividad 04 
 
@@ -714,11 +716,6 @@ int main() {
     - ¿Por qué es importante usar delete[] al liberar memoria asignada para un arreglo?
 
 
-
-:::caution[📤 Bitácora]
-Responde las preguntas de los seis experimentos anteriores.
-:::
-
 ### Actividad 05
 
 #### Copia de objetos y su ubicación en memoria
@@ -830,9 +827,103 @@ class Program
 
 Ejecuta los programas en modo depuración y detente en los breakpoints para comparar. 
 
-:::caution[📤 Bitácora]
+**Reflexión final para esta actividad**
+
 1. Explica qué ocurre al copiar un objeto en C++ y en C#. ¿Qué diferencias encuentras?
 2. ¿Qué es `copia` en C++ y en C#? ¿Es una copia independiente de `original`?
+
+### Actividad integradora de investigación
+
+:::caution[📤 Bitácora - Actividad integradora de investigación]
+
+**Objetivo**: analizar un programa integral, predecir su comportamiento en memoria y verificar tus hipótesis utilizando el depurador de Visual Studio.
+
+**Instrucciones**:
+
+Considera el siguiente programa que combina varios de los conceptos 
+que exploraste en las Actividades 01-05.
+
+```cpp
+#include <iostream>
+
+int contador_global = 100;
+
+void ejecutarContador() {
+    static int contador_estatico = 0;
+    contador_estatico++;
+    std::cout << "  -> Llamada a ejecutarContador. Valor de contador_estatico: " << contador_estatico << std::endl;
+}
+
+void sumaPorValor(int a) {
+    a = a + 10;
+    std::cout << "  -> Dentro de sumaPorValor, 'a' ahora es: " << a << std::endl;
+}
+
+void sumaPorReferencia(int& a) {
+    a = a + 10;
+    std::cout << "  -> Dentro de sumaPorReferencia, 'a' ahora es: " << a << std::endl;
+}
+
+void sumaPorPuntero(int* a) {
+    *a = *a + 10;
+    std::cout << "  -> Dentro de sumaPorPuntero, '*a' ahora es: " << *a << std::endl;
+}
+
+int main() {
+    int val_A = 20;
+    int val_B = 20;
+    int val_C = 20;
+
+    std::cout << "--- Experimento con paso de parámetros ---" << std::endl;
+    std::cout << "Valor inicial de val_A: " << val_A << std::endl;
+    sumaPorValor(val_A);
+    std::cout << "Valor final de val_A: " << val_A << std::endl << std::endl;
+
+    std::cout << "Valor inicial de val_B: " << val_B << std::endl;
+    sumaPorReferencia(val_B);
+    std::cout << "Valor final de val_B: " << val_B << std::endl << std::endl;
+
+    std::cout << "Valor inicial de val_C: " << val_C << std::endl;
+    sumaPorPuntero(&val_C);
+    std::cout << "Valor final de val_C: " << val_C << std::endl << std::endl;
+
+    std::cout << "--- Experimento con variables estáticas ---" << std::endl;
+    ejecutarContador();
+    ejecutarContador();
+    ejecutarContador();
+
+    return 0;
+}
+```
+
+**Tu Tarea**:
+
+A. Predicción (sin ejecutar el código):
+
+1. ¿Cuál será la salida final en la consola de este programa? 
+2. Escribe la salida completa que esperas.
+3. Dibuja un mapa de memoria conceptual de este programa justo 
+antes de que main finalice. Debes indicar en qué segmento de 
+memoria (Stack, Heap, Datos Globales/Estáticos, Código) se encontraría cada 
+una de las siguientes variables: contador_global, contador_estatico, val_A, 
+val_B, val_C (dentro de main), el parámetro a de la función sumaPorValor, la función main misma.
+
+
+B. Verificación y análisis (usando el depurador):
+
+Ejecuta el programa paso a paso (F10) con un breakpoint al inicio de main.
+
+4. Compara la salida real con tu predicción. Si hubo diferencias, explica 
+por qué ocurrieron. Evidencia clave: capturas de pantalla antes y después 
+de los puntos de interés (¿Cuáles son esos puntos? -> tu tarea analizarlo). 
+
+5. Describe qué demuestran estas capturas sobre la diferencia entre los 
+diferentes tipos de paso por parámetros analizados.
+
+6. Explica con tus propias palabras el comportamiento de 
+contador_estatico. ¿Por qué "recuerda" su valor entre llamadas a la función 
+ejecutarContador? ¿En qué se diferencia de una variable local normal?
+
 :::
 
 ## Apply: Aplicación 🛠
@@ -937,17 +1028,16 @@ Escribe 14 ¿Qué valor en decimal obtienes? ¿Qué observas?
 en una dirección de memoria menor. A esto se le conocen como arquitecturas little-endian. Otro tipo de arquitectura es big-endian, donde el byte de mayor peso (más significativo) se 
 almacena primero. La mayoría de las arquitecturas modernas son little-endian. Si la arquitectura de tu computador fuera big-endian, ¿Cómo quedarían almacenados los bytes en la memoria de `p`?
 
-:::caution[📤 Bitácora]
-Basado en tus observaciones realizando experimentos con el depurador, responde las preguntas que aparecen en el enunciado. Adicionalmente, responde las siguientes preguntas:
+**Reflexiona sobre las siguientes cuestiones**:
 
 1. ¿Cuál es la diferencia entre un constructor y un destructor en C++?
 2. ¿Cuál es la diferencia entre un objeto y una clase en C++?
 3. ¿Qué diferencia notas entre el objeto Punto en C++ y C#? 
-4. ¿Qué es `p` en C++ y qué es `p` en C#? (en uno de ellos `p` es un objeto y en el otro es una referencia a un objeto).
+4. ¿Qué es `p` en C++ y qué es `p` en C#? (en uno de ellos `p` es un objeto y 
+en el otro es una referencia a un objeto).
 5. ¿En qué parte de memoria se almacena `p` en C++ y en C#?
-6. ¿Qué observaste con el depurador acerca de `p`? Según lo que observaste ¿Qué es un objeto en C++?
-
-:::
+6. ¿Qué observaste con el depurador acerca de `p`? Según lo que observaste 
+¿Qué es un objeto en C++?
 
 ### Actividad 07
 
@@ -1007,15 +1097,14 @@ Ejecuta el programa en modo depuración y detente en los breakpoints para compar
 - La dirección de pStack (ubicado en el stack).
 - El valor de pHeap (la dirección del objeto en el heap).
 
-:::caution[📤 Bitácora]
+**Reflexiona sobre lo siguiente**:
+
 1. Explicación de la diferencia entre objetos creados en el stack y en el heap.
 2. `pStack` ¿Es un objeto o una referencia a un objeto?
 3. `pHeap` ¿Es un objeto o una referencia a un objeto? Si es una referencia, ¿A qué objeto hace referencia?
 4. Observa en Memory1 (Debug->Windows->Memory->Memory1) el contenido de la dirección de memoria de `pHeap`, recuerda escribir en la entrada de texto de Memory1 
 la dirección de memoria de `&pHeap` y presionar Enter. Compara el contenido de memoria con el contenido 
 de `pHeap` en la pestaña de Locals (Debug->Windows->Locals). ¿Qué observas? ¿Qué significa esto?
-:::
-
 
 ### Actividad 08
 
@@ -1065,7 +1154,7 @@ int main() {
 
 ```
 
-:::caution[📤 Bitácora]
+**Reflexiona sobre lo siguiente**:
 
 1. ¿Qué ocurre después de llamar a la función `cambiarNombre`? ¿Por qué aparece el mensaje `Destructor: Punto cambiado(70, 80) destruido.`? 
 2. ¿Por qué `original` sigue existiendo luego de llamar `cambiarNombre`?
@@ -1103,9 +1192,6 @@ int main() {
 
 5. ¿Qué ocurre ahora? ¿Por qué?
 6. En este caso ¿Cuál es la diferencia entre pasar un objeto por valor, por referencia y por puntero? 
-
-:::
-
 
 ### Actividad 09
 
@@ -1185,13 +1271,14 @@ int main() {
 - Selecciona `Contador::total` y presiona click derecho, luego selecciona "Add Watch". Esto te permite inspeccionar 
 variables globales y puede ser de utilidad cuando investigues en los experimentos del curso.
 
-:::caution[📤 Bitácora]
+
+**Reflexiona sobre lo siguiente**:
+
 1. ¿Qué puedes concluir de los miembros estáticos y de instancia de una clase en C++? ¿Cómo se gestionan en memoria? 
 ¿Qué ventajas y desventajas tienen? ¿Cuándo es útil utilizarlos?
 2. En el programa, en qué segmento de memoria se están almacenando c1, c2, c3 y Contador::total? Ten especial cuidado con la 
 respuesta que das para el caso de c3, piensa de nuevo, qué es c3 y qué está almacenando. Ahora, responde de nuevo, en qué 
 segmento de la memoria se está almacenando c3 y en qué segmento de la memoria se está almacenando el objeto al que apunta c3.
-:::
 
 ### Actividad 10
 
@@ -1253,7 +1340,7 @@ Ten presente que un bloque es un conjunto de instrucciones encerradas entre llav
 - Inspecciona el ciclo de vida de pBloque (observa el constructor y el destructor al entrar y salir del bloque).
 - Observa que el objeto creado dinámicamente no se destruye automáticamente al salir del bloque, sino cuando se llama a delete.
 
-:::caution[📤 Bitácora]
+**Reflexiona sobre lo siguiente**:
 
 1. Explica el ciclo de vida de un objeto en el stack versus uno en el heap.
 
@@ -1370,6 +1457,95 @@ int main() {
 Recuerda de nuevo, pBloque2 es un objeto o es una referencia a un objeto?  
 5. ¿En qué parte de la memoria se almacena pBloque2?  
 6. ¿En qué parte de la memoria se almacena el objeto al que apunta pBloque2?
+
+### Actividad integradora de aplicación
+
+:::caution[📤 Bitácora - Actividad de transferencia y resolución de problemas]
+
+**Contexto:**
+
+Eres parte de un equipo de desarrollo de un motor para videojuegos. Un 
+colega ha implementado una clase `Personaje` para gestionar los datos 
+básicos de los NPCs (Non-Playable Characters) en el juego, pero el programa 
+está fallando de formas impredecibles (crashes) y parece haber fugas de 
+memoria (el juego consume cada vez más RAM).
+
+Se te ha encargado auditar la clase `Personaje`, identificar los problemas de 
+gestión de memoria y refactorizarla para que sea robusta y segura.
+
+**Código problemático:**
+
+```cpp
+#include <iostream>
+#include <string>
+
+class Personaje {
+public:
+    std::string nombre;
+    int* estadisticas; 
+
+    Personaje(std::string n, int vida, int ataque, int defensa) {
+        nombre = n;
+        estadisticas = new int[3];
+        estadisticas[0] = vida;
+        estadisticas[1] = ataque;
+        estadisticas[2] = defensa;
+        std::cout << "Constructor: nace " << nombre << std::endl;
+    }
+
+    void imprimir() {
+        std::cout << "Personaje " << nombre
+            << " [Vida: " << estadisticas[0]
+            << ", ATK: " << estadisticas[1]
+            << ", DEF: " << estadisticas[2]
+            << "]" << std::endl;
+    }
+};
+
+void simularEncuentro() {
+    std::cout << "\n--- Iniciando encuentro ---" << std::endl;
+    Personaje heroe("Aragorn", 100, 20, 15);
+    
+    Personaje copiaHeroe = heroe;
+    copiaHeroe.nombre = "Copia de Aragorn";
+
+    std::cout << "Saliendo del encuentro..." << std::endl;
+}
+
+int main() {
+    simularEncuentro();
+    std::cout << "\nSimulación terminada." << std::endl;
+    return 0;
+}
+```
+
+**Tu tarea:**
+
+1.  **Diagnóstico del problema (análisis):**
+
+    *   Compila y ejecuta el código.
+    *   Identifica y explica con detalle al menos **dos errores críticos** 
+    de gestión de memoria en la clase `Personaje` y su uso en 
+    `simularEncuentro`.
+    *   Para cada error, describe:
+        
+        * ¿Cuál es el error?   
+        * ¿Por qué ocurre? Explica el mecanismo a nivel de memoria 
+        (stack, heap, punteros)
+        * ¿Cuál es su consecuencia?
+
+2.  Solución y refactorización (síntesis y creación):
+
+    * Re-escribe la clase `Personaje` para que sea segura en cuanto a memoria. 
+    Debes utilizar los conocimientos adquiridos en esta unidad y por tanto 
+    tu solución no debería usar la **Regla de los tres** que probablemente 
+    sea la solución que te ofrezca una IA. 
+    * Presenta el código completo de tu clase `Personaje` corregida.
+
+3.  **Justificación de la Solución:**
+
+Explica por qué cada uno de los cambios que añadiste resuelven 
+los problemas que diagnosticaste. 
 :::
 
 ## Reflect: Consolidación y metacognición 🤔
