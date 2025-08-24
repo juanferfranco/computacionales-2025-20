@@ -398,13 +398,13 @@ e implementarla.
 Implementarás una cola (FIFO - First In, First Out) para crear un 
 efecto de pintura dinámica en la pantalla. Cada vez que el usuario 
 mueve el mouse, se agregará un trazo en la pantalla, pero los trazos 
-más antiguos se desvanecerán y desaparecerán con el tiempo, creando 
-un efecto de eco visual.
+más antiguos en la cola tendrán menos opacidad.
 
 Te preguntarás ¿Cómo funciona una FIFO? Puedes pensar en una fila para 
 comprar el almuerzo en la cafetería. La primera persona en llegar 
 es la primera en ser atendida. De manera similar, en una cola FIFO, 
-los elementos se procesan en el orden en que fueron añadidos.
+los elementos se procesan en el orden en que fueron añadidos. Los 
+primeros en ingresar son los primeros en salir, son los más antiguos.
 
 Tu tarea es implementar la estructura de datos BrushQueue y completar el 
 código de ofApp.cpp donde faltan fragmentos clave. ¿Cómo? Lo primero 
@@ -414,7 +414,8 @@ que el primer dato en entrar es el primero en salir (FIFO).
 
 **REQUISITOS**
 
-1. Implementar una cola (BrushQueue) desde cero sin usar std::queue ni std::list.
+1. Implementar una cola (BrushQueue) desde cero sin usar std::queue ni std::list. La idea 
+es que implementes desde cero la estructura de datos.
 
 2. Cada nodo de la cola debe almacenar:
 
@@ -435,6 +436,8 @@ que el primer dato en entrar es el primero en salir (FIFO).
     - Cuando el usuario mueve el mouse, se debe agregar un nuevo trazo con un color aleatorio.
     - Cuando el usuario presiona 'c', se deben borrar todos los trazos de la pantalla.
     - Cuando el usuario presiona 'a', se debe alternar entre una cola de tamaño 50 y 100.
+
+5. Debes gestionar correctamente la memoria para evitar fugas.
 
 **Código base (con fragmentos faltantes)**:
 
@@ -576,26 +579,46 @@ maxSize = 100
 
 ![maxSize 100](../../../assets/u4a3-2.png)
 
+En este video puedes ver cómo debería funcionar la aplicación:
 
+[Video de demostración](https://youtu.be/VRDRZTKPTx8)
 
 ## Evidencias 🗂️
 
 <Aside type="note" title="RUBRICA!">
 
+- Si no entregas la solución en el formato solicitado en la bitácora tendrás 
+una penalización de 0.5 en la nota final.
+- Debe estar todo el código  que permita reproducir en cualquier momento el 
+video. Si tu código no reproduce el video la nota será 0.
+- Si no se entrega un video de la aplicación la nota es 0, aunque se entregue 
+el código que lo reproduzca.
+- Si el video no abre o no es visible la nota es 0.
+
 | Escala de evaluación | Nota 
 | :--- | :--- 
-| Demo con 3 estados sin fallas | 5
-| Demo con 2 estados sin fallas | 4
-| Demo con 1 estado sin fallas | 3
-| Demo con estados incompletos | 2
-| Demo con fallas críticas, no es comprensible | 1
-| No se entrega el demo | 0
+| El código cumple con todo, implementa la FIFO sin bibliotecas y gestiona correctamente la memoria | 5
+| El código cumple con todo e implementa la FIFO sin bibliotecas | 4
+| El código cumple con todo, pero no implementa SIN bibliotecas la FIFO | 3
+| El código cumple con TODA la funcionalidad solicitada | 2
+| El código reproduce parcialmente la funcionalidad solicitada | 1
+| El código no compila o no lo entregas | 0
 
 </Aside>
 
 <Aside type="danger" title="EVIDENCIAS EN BITÁCORA">
 
-En construcción
+Debes entregar un ENLACE, OJO un enlace, a un video no lista de youtube
+con las siguientes restricciones:
+
+- La calidad mínima del video debe ser 1080p.
+- Inicia mostrando que tu aplicación compila sin errores.
+- Ejecuta la aplicación y demuestra el cambio de tamaño de la cola, borrar los trazos y salvar un frame.
+
+Debes rellenar en el archivo bitacora.md los códigos de ofApp.cpp, ofApp.h y main.cpp:
+
+- Es importante que verifiques que el código que entregas en la bitácora funciona de nuevo 
+si creas un nuevo proyecto en openFrameworks y copias y pegas el código.
 
 </Aside>
 
